@@ -1,3 +1,7 @@
 type Mutation {
-    echo(text: String!): String!
+    addForm(credits: String!, email: String!, number: Float!, dateOfBirth: Date!, message: String): AddFormResponse!
+}
+
+type AddFormResponse {
+    status: String!
 }

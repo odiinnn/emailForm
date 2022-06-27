@@ -18,14 +18,23 @@ export type Scalars = {
   Json: any;
 };
 
+export type AddFormResponse = {
+  __typename?: 'AddFormResponse';
+  status: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
-  echo: Scalars['String'];
+  addForm: AddFormResponse;
 };
 
 
-export type MutationEchoArgs = {
-  text: Scalars['String'];
+export type MutationAddFormArgs = {
+  credits: Scalars['String'];
+  dateOfBirth: Scalars['Date'];
+  email: Scalars['String'];
+  message?: InputMaybe<Scalars['String']>;
+  number: Scalars['Float'];
 };
 
 export type Query = {
@@ -33,79 +42,58 @@ export type Query = {
   debug?: Maybe<Scalars['Json']>;
 };
 
-export type DebugQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type DebugQuery = { __typename?: 'Query', debug?: any | null };
-
-export type EchoMutationVariables = Exact<{
-  text: Scalars['String'];
+export type AddFormMutationVariables = Exact<{
+  credits: Scalars['String'];
+  email: Scalars['String'];
+  number: Scalars['Float'];
+  dateOfBirth: Scalars['Date'];
+  message?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type EchoMutation = { __typename?: 'Mutation', echo: string };
+export type AddFormMutation = { __typename?: 'Mutation', addForm: { __typename?: 'AddFormResponse', status: string } };
 
 
-export const DebugDocument = gql`
-    query Debug {
-  debug
+export const AddFormDocument = gql`
+    mutation AddForm($credits: String!, $email: String!, $number: Float!, $dateOfBirth: Date!, $message: String) {
+  addForm(
+    credits: $credits
+    email: $email
+    number: $number
+    dateOfBirth: $dateOfBirth
+    message: $message
+  ) {
+    status
+  }
 }
     `;
+export type AddFormMutationFn = Apollo.MutationFunction<AddFormMutation, AddFormMutationVariables>;
 
 /**
- * __useDebugQuery__
+ * __useAddFormMutation__
  *
- * To run a query within a React component, call `useDebugQuery` and pass it any options that fit your needs.
- * When your component renders, `useDebugQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDebugQuery({
- *   variables: {
- *   },
- * });
- */
-export function useDebugQuery(baseOptions?: Apollo.QueryHookOptions<DebugQuery, DebugQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<DebugQuery, DebugQueryVariables>(DebugDocument, options);
-      }
-export function useDebugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DebugQuery, DebugQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<DebugQuery, DebugQueryVariables>(DebugDocument, options);
-        }
-export type DebugQueryHookResult = ReturnType<typeof useDebugQuery>;
-export type DebugLazyQueryHookResult = ReturnType<typeof useDebugLazyQuery>;
-export type DebugQueryResult = Apollo.QueryResult<DebugQuery, DebugQueryVariables>;
-export const EchoDocument = gql`
-    mutation Echo($text: String!) {
-  echo(text: $text)
-}
-    `;
-export type EchoMutationFn = Apollo.MutationFunction<EchoMutation, EchoMutationVariables>;
-
-/**
- * __useEchoMutation__
- *
- * To run a mutation, you first call `useEchoMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useEchoMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useAddFormMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddFormMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [echoMutation, { data, loading, error }] = useEchoMutation({
+ * const [addFormMutation, { data, loading, error }] = useAddFormMutation({
  *   variables: {
- *      text: // value for 'text'
+ *      credits: // value for 'credits'
+ *      email: // value for 'email'
+ *      number: // value for 'number'
+ *      dateOfBirth: // value for 'dateOfBirth'
+ *      message: // value for 'message'
  *   },
  * });
  */
-export function useEchoMutation(baseOptions?: Apollo.MutationHookOptions<EchoMutation, EchoMutationVariables>) {
+export function useAddFormMutation(baseOptions?: Apollo.MutationHookOptions<AddFormMutation, AddFormMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<EchoMutation, EchoMutationVariables>(EchoDocument, options);
+        return Apollo.useMutation<AddFormMutation, AddFormMutationVariables>(AddFormDocument, options);
       }
-export type EchoMutationHookResult = ReturnType<typeof useEchoMutation>;
-export type EchoMutationResult = Apollo.MutationResult<EchoMutation>;
-export type EchoMutationOptions = Apollo.BaseMutationOptions<EchoMutation, EchoMutationVariables>;
+export type AddFormMutationHookResult = ReturnType<typeof useAddFormMutation>;
+export type AddFormMutationResult = Apollo.MutationResult<AddFormMutation>;
+export type AddFormMutationOptions = Apollo.BaseMutationOptions<AddFormMutation, AddFormMutationVariables>;

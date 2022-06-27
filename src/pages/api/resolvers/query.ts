@@ -3,7 +3,7 @@ const resolvers = {
         debug: () => {
             console.log('debug query log');
             return {
-                appName: 'LiteFront',
+                appName: 'Form',
                 appVersion: '1.0.0',
                 serverTime: new Date().toISOString(),
                 uptime: process.uptime()

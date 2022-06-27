@@ -1,9 +1,7 @@
-import Query from './query';
 import Mutation from './mutation';
 import {GraphQLScalarType} from 'graphql';
 
 const resolvers = {
-    Query: Query.Query,
     Mutation: Mutation.Mutation,
     Date: new GraphQLScalarType<Date, string>({
         name: 'Date',

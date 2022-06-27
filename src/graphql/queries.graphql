@@ -1,7 +1,18 @@
-query Debug {
-    debug
+mutation AddForm(
+    $credits: String!
+    $email: String!
+    $number: Float!
+    $dateOfBirth: Date!
+    $message: String
+) {
+    addForm(
+        credits: $credits
+        email: $email
+        number: $number
+        dateOfBirth: $dateOfBirth
+        message: $message
+    ) {
+        status
+    }
 }
 
-mutation Echo($text: String!) {
-    echo(text: $text)
-}

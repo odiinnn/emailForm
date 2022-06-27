@@ -3,12 +3,16 @@ schema {
   mutation: Mutation
 }
 
+type AddFormResponse {
+  status: String!
+}
+
 scalar Date
 
 scalar Json
 
 type Mutation {
-  echo(text: String!): String!
+  addForm(credits: String!, dateOfBirth: Date!, email: String!, message: String, number: Float!): AddFormResponse!
 }
 
 type Query {
